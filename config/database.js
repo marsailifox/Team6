@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(import.meta.env.VITE_DATABASE_URL);
+mongoose.connect(process.env.VITE_DATABASE_URL);
 
 const db = mongoose.connection;
 
