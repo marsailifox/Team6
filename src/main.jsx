@@ -6,8 +6,8 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Auth0Provider
-    domain="credit-rabbit.us.auth0.com"
-    clientId="VIDXpjri41YwhXKONf5PvvKDhxplETau"
+    domain={import.meta.env.VITE_domain}
+    clientId={import.meta.env.VITE_clientId}
     authorizationParams={{
       redirect_uri: 'http://localhost:5173'
     }}
