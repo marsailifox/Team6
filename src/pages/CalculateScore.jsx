@@ -17,15 +17,29 @@ function CalculateScore() {
     //Changing inputs to numbers
     try {
       income=parseInt(formData.income)
+      if (isNaN(income)){
+        throw new Error('Income must be a number')
+      }
       age=parseInt(formData.loanAmount)
+      if (isNaN(age)){
+        throw new Error('Age must be a number')
+      }
       loanAmount=parseInt(formData.loanAmount)
+      if (isNaN(loanAmount)){
+        throw new Error('Loan amount must be a number(no dollar signs)')
+      }
       employmentHistory=parseInt(formData.employmentHistory)
+      is (isNan(employmentHistory)){
+        throw new Error('Employment history must be a number in years')
+      }
       otherPayments=parseInt(formData.otherPayments)
+
+
       creditHistoryLength=parseInt(formData.creditHistoryLength)
     }
     catch(err){
       console.log(err)
-      setError('Invalid input')
+      setError(err)
       return
     }
     let percentage=loanAmount/(income-otherPayments)
@@ -71,7 +85,7 @@ function CalculateScore() {
         <input type='text' name='age' placeholder='Age' onChange={handleChange}/>
         <input type='text' name='loanAmount' placeholder='Loan Amount' onChange={handleChange}/>
         <input type='text' name='otherPayments' placeholder='Other Expenses' onChange={handleChange}/>
-        <input type='text' name='employmentHistory' placeholder='Employment' onChange={handleChange}/>
+        <input type='text' name='employmentHistory' placeholder='Employment History Length' onChange={handleChange}/>
         <input type='text' name='income' placeholder='Income' onChange={handleChange}/>
         <input type='text' name='creditHistoryLength' placeholder='Credit History Length' onChange={handleChange}/>
         <select name='defaultStatus' onChange={handleChange}>
