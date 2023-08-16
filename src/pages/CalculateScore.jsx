@@ -1,8 +1,86 @@
 import React from 'react';
+import {useState} from 'react'
 
 function CalculateScore() {
+  const [formData, setFormData]=useState({})
+  const [error, setError]=useState('')
+  
+  const calculate=(formData)=>{
+    console.log(formData)
+    let income
+    let age
+    let loanAmount
+    let employmentHistory
+    let creditHistoryLength
+    let otherPayments
+    
+    //Changing inputs to numbers
+    try {
+      income=parseInt(formData.income)
+      age=parseInt(formData.loanAmount)
+      loanAmount=parseInt(formData.loanAmount)
+      employmentHistory=parseInt(formData.employmentHistory)
+      otherPayments=parseInt(formData.otherPayments)
+      creditHistoryLength=parseInt(formData.creditHistoryLength)
+    }
+    catch(err){
+      console.log(err)
+      setError('Invalid input')
+      return
+    }
+    let percentage=loanAmount/(income-otherPayments)
+    console.log(percentage)
+    if (percentage<=.20){
+      console.log(true)
+      return
+    }
+    if ((percentage<=0.5 && percentage>0.2) && creditHistoryLength>=2 && employmentHistory>=3 && age>=25){
+      console.log(true)
+      return
+    }
+    if ((percentage<=0.7 && percentage>0.5) && creditHistoryLength>=5 && employmentHistory>=5 && age>=28 && formData.defaultStatus==='no'){
+      console.log(true)
+      return
+    }
+    if ((percentage<1 && percentage>.7) && creditHistoryLength>=10 && employmentHistory>=10 && age>=30 && formData.defaultStatus==='no'){
+      console.log(true)
+      return
+    }
+    else{
+      console.log(false)
+      return
+    }
+    
+
+
+  }
+  const handleChange=(e)=>{
+    const name=e.target.name;
+    const value=e.target.value;
+    setFormData({...formData, [name] : value})
+  }
+  
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    calculate(formData)
+  }
   return <div>
     Calculate Your Score Page
+      <form onSubmit={handleSubmit}>
+        <input type='text' name='name' placeholder='Full Name' onChange={handleChange} />
+        <input type='text' name='age' placeholder='Age' onChange={handleChange}/>
+        <input type='text' name='loanAmount' placeholder='Loan Amount' onChange={handleChange}/>
+        <input type='text' name='otherPayments' placeholder='Other Expenses' onChange={handleChange}/>
+        <input type='text' name='employmentHistory' placeholder='Employment' onChange={handleChange}/>
+        <input type='text' name='income' placeholder='Income' onChange={handleChange}/>
+        <input type='text' name='creditHistoryLength' placeholder='Credit History Length' onChange={handleChange}/>
+        <select name='defaultStatus' onChange={handleChange}>
+          <option>Have you ever defaulted? </option>
+          <option value='yes'>Yes</option>
+          <option value='no'>No</option>
+        </select>
+        <input type='submit' value='Confirm'/>
+      </form>
     </div>;
 }
 
