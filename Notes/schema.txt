@@ -1,0 +1,11 @@
+Column                      type
+
+person_age                  int
+person_income               int
+person_emp_length           float
+loan_amnt                   int
+cb_person_default_on_file   bool (current 0 and 1s in the csv, will start with num type)
+cb_person_cred_hist_length  int
+other_payments              int
+percent_of_income           float
+loan_status                 bool (current yes or no, will start with string type)
