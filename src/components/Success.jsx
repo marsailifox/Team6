@@ -8,7 +8,6 @@ const Success = ({loan}) => {
     console.log(loan)
     const { loginWithRedirect, logout, user } = useAuth0()
 
-
   return (
     <div className='flex'>
         <div class='ml-4'>
@@ -27,7 +26,7 @@ const Success = ({loan}) => {
               </div>
               <div class='font-extrabold w-[200px]'>
                 Credit Default
-                <div class='font-light'>{`${loan.cb_person_default_on_file}`}</div>
+                <div class='font-light capitalize'>{`${loan.cb_person_default_on_file}`}</div>
               </div>
               <div class='font-extrabold w-[200px]'>
                 Age
