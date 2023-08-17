@@ -55,6 +55,7 @@ const Success = ({loan}) => {
                 </div>
               </div>
             </div>
+            <Link to="/calculate" className='absolute bottom-10 left-12 text-lg font-extrabold'>Go back to the calculation page.</Link>
          </div>
           <img class='mt-36 ml-64' src='Image used for Confirmation Page.jpg' alt='success image' width='400'></img>
     </div>
