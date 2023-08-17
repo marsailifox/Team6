@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import { useAuth0 } from "@auth0/auth0-react"
@@ -9,7 +9,9 @@ function App() {
   const { loginWithRedirect, logout, user } = useAuth0()
   
   console.log(user)
-
+  useEffect(()=>{
+    loginWithRedirect()
+  },[])
   return (
     <>
     {/* navbar goes here */}
