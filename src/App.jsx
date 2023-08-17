@@ -9,9 +9,9 @@ function App() {
   const { loginWithRedirect, logout, user } = useAuth0()
   
   console.log(user)
-  useEffect(()=>{
-    loginWithRedirect()
-  },[])
+  // useEffect(()=>{
+  //   loginWithRedirect()
+  // },[])
   return (
     <>
     {/* navbar goes here */}
@@ -21,7 +21,7 @@ function App() {
     </button>
       <h1>Credit Rabbit</h1>
       {user && <h2>Welcome {user.name}</h2>}
-      <CalculateScore/>
+      {/* <CalculateScore/> */}
     </>
   )
 }
