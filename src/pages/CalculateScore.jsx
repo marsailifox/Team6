@@ -55,7 +55,7 @@ function CalculateScore() {
     console.log(percentage)
     // percentage is referenced as percent_of_income in the notes
     console.log(percentage<=.2)
-    if (percentage<=.20){
+    if (percentage<=.20 && percentage>0){
       console.log('here')
       loan_status=true
       // formData.loan_status = true
