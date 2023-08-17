@@ -12,7 +12,6 @@ function App() {
   console.log(user)
   return (
     <>
-    {/* navbar goes here */}
     {/* <button onClick={() => loginWithRedirect()}>Login / Sign up</button>
     
       <h1>Credit Rabbit</h1>
