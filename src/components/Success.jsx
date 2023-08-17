@@ -8,7 +8,6 @@ const Success = ({loan}) => {
     console.log(loan)
     const { loginWithRedirect, logout, user } = useAuth0()
 
-
   return (
     <div className='flex'>
         <div class='ml-4'>
@@ -27,7 +26,7 @@ const Success = ({loan}) => {
               </div>
               <div class='font-extrabold w-[200px]'>
                 Credit Default
-                <div class='font-light'>{`${loan.cb_person_default_on_file}`}</div>
+                <div class='font-light capitalize'>{`${loan.cb_person_default_on_file}`}</div>
               </div>
               <div class='font-extrabold w-[200px]'>
                 Age
@@ -55,6 +54,7 @@ const Success = ({loan}) => {
                 </div>
               </div>
             </div>
+            <Link to="/calculate" className='absolute bottom-10 left-12 text-lg font-extrabold'>Go back to the calculation page.</Link>
          </div>
           <img class='mt-36 ml-64' src='Image used for Confirmation Page.jpg' alt='success image' width='400'></img>
     </div>
