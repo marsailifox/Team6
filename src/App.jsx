@@ -10,9 +10,6 @@ function App() {
   const { loginWithRedirect, logout, user } = useAuth0()
   
   console.log(user)
-  // useEffect(()=>{
-  //   loginWithRedirect()
-  // },[])
   return (
     <>
     {/* navbar goes here */}
