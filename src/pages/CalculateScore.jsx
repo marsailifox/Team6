@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 
 
 function CalculateScore() {
-  const { user } = useAuth0()
+  const { user, logout } = useAuth0()
   const navigate=useNavigate()
   const [formData, setFormData]=useState({})
   const [loan, setLoan]=useState({})
@@ -128,6 +128,7 @@ function CalculateScore() {
   // }
   
   return <div class="relative">
+    
     <div class="flex justify-end">
     <img class="absolute top-0 left-0 mt-10 z-10 " style={{ height: '10rem', marginTop: '0.5rem', position: 'absolute', top:'0', left:'1rem' }} src="./Logo.jpg" alt="" />
     <img class="absolute top-0 left-0 mt-10 z-10 " style={{ height: '28rem', marginTop: '13rem',position: 'absolute', top:'0', left:'5rem'}} src="./form.jpg" alt="" />
