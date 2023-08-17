@@ -1,70 +1,101 @@
 import React from 'react';
 import {useState} from 'react'
+// import UserLoan from '../../models/user_loan'
+import { useAuth0 } from "@auth0/auth0-react"
+
 
 function CalculateScore() {
+  const { user } = useAuth0()
+
   const [formData, setFormData]=useState({})
+  // add state for loan status to conditionally render results page
   const [error, setError]=useState('')
   
   const calculate=(formData)=>{
-    console.log(formData)
-    let income
-    let age
-    let loanAmount
-    let employmentHistory
-    let creditHistoryLength
-    let otherPayments
+    
+    let userEmail = user?.email
+    let person_income
+    let person_age
+    let loan_amnt
+    let person_emp_length
+    let cb_person_cred_hist_length
+    let cb_person_default_on_file
+    let percent_of_income
+    let other_payments
+    let loan_status
     
     //Changing inputs to numbers
     try {
-      income=parseInt(formData.income)
-      if (isNaN(income)){
-        throw new Error('Income must be a number')
-      }
-      age=parseInt(formData.loanAmount)
-      if (isNaN(age)){
-        throw new Error('Age must be a number')
-      }
-      loanAmount=parseInt(formData.loanAmount)
-      if (isNaN(loanAmount)){
-        throw new Error('Loan amount must be a number(no dollar signs)')
-      }
-      employmentHistory=parseInt(formData.employmentHistory)
-      is (isNan(employmentHistory)){
-        throw new Error('Employment history must be a number in years')
-      }
-      otherPayments=parseInt(formData.otherPayments)
-
-
-      creditHistoryLength=parseInt(formData.creditHistoryLength)
+      person_income=parseInt(formData.person_income)
+      person_age=parseInt(formData.person_age)
+      loan_amnt=parseInt(formData.loan_amnt)
+      person_emp_length=parseInt(formData.person_emp_length)
+      other_payments=parseInt(formData.other_payments)
+      cb_person_cred_hist_length=parseInt(formData.cb_person_cred_hist_length)
+      // setting it to the form data
+      
+      // formData.person_income = person_income
+      // formData.person_age = person_age
+      // formData.loan_amnt = loan_amnt
+      // formData.person_emp_length = person_emp_length
+      // formData.other_payments = other_payments
+      // formData.cb_person_cred_hist_length = cb_person_cred_hist_length
     }
     catch(err){
       console.log(err)
       setError(err)
       return
     }
-    let percentage=loanAmount/(income-otherPayments)
+    let percentage=loan_amnt/(person_income-other_payments)
+    setFormData({...formData, percent_of_income: percentage})
+    // formData.percent_of_income = percentage
     console.log(percentage)
+    // percentage is referenced as percent_of_income in the notes
+    console.log(percentage<=.2)
     if (percentage<=.20){
-      console.log(true)
-      return
+      console.log('here')
+      loan_status=true
+      // formData.loan_status = true
+      // return
     }
-    if ((percentage<=0.5 && percentage>0.2) && creditHistoryLength>=2 && employmentHistory>=3 && age>=25){
-      console.log(true)
-      return
+    else if ((percentage<=0.5 && percentage>0.2) && cb_person_cred_hist_length>=2 && person_emp_length>=3 && person_age>=25){
+      loan_status=true
+      // formData.loan_status = true
+      // return
     }
-    if ((percentage<=0.7 && percentage>0.5) && creditHistoryLength>=5 && employmentHistory>=5 && age>=28 && formData.defaultStatus==='no'){
-      console.log(true)
-      return
+    else if ((percentage<=0.7 && percentage>0.5) && cb_person_cred_hist_length>=5 && person_emp_length>=5 && person_age>=28 && formData.defaultStatus==='no'){
+      loan_status=true
+      // formData.loan_status = true
+      // return
     }
-    if ((percentage<1 && percentage>.7) && creditHistoryLength>=10 && employmentHistory>=10 && age>=30 && formData.defaultStatus==='no'){
-      console.log(true)
-      return
+    else if ((percentage<1 && percentage>.7) && cb_person_cred_hist_length>=10 && person_emp_length>=10 && person_age>=30 && formData.defaultStatus==='no'){
+      loan_status=true
+      // formData.loan_status = true
+      // return
     }
     else{
-      console.log(false)
-      return
+      loan_status=false
+      // formData.loan_status = false
+      // return
     }
-    
+    console.log(loan_status)
+    if (formData.defaultStatus == 'True') {
+      cb_person_default_on_file = true
+    } else {
+      cb_person_default_on_file = false
+    }
+    setFormData(
+      {...formData, 
+        person_income: person_income,
+        person_age: person_age,
+        loan_amnt: loan_amnt,
+        person_emp_length: person_emp_length,
+        other_payments: other_payments,
+        cb_person_cred_hist_length: cb_person_cred_hist_length,
+        loan_status: loan_status,
+        percent_of_income: percentage,
+        cb_person_default_on_file: cb_person_default_on_file
+      })
 
 
   }
@@ -77,25 +108,31 @@ function CalculateScore() {
   const handleSubmit=(e)=>{
     e.preventDefault()
     calculate(formData)
+    console.log(formData)
+    // saveFormData(formData)
   }
+
+  // const saveFormData(formData) {
+  // }
+  
   return <div>
     Calculate Your Score Page
       <form onSubmit={handleSubmit}>
-        <input type='text' name='name' placeholder='Full Name' onChange={handleChange} />
-        <input type='text' name='age' placeholder='Age' onChange={handleChange}/>
-        <input type='text' name='loanAmount' placeholder='Loan Amount' onChange={handleChange}/>
-        <input type='text' name='otherPayments' placeholder='Other Expenses' onChange={handleChange}/>
-        <input type='text' name='employmentHistory' placeholder='Employment History Length' onChange={handleChange}/>
-        <input type='text' name='income' placeholder='Income' onChange={handleChange}/>
-        <input type='text' name='creditHistoryLength' placeholder='Credit History Length' onChange={handleChange}/>
-        <select name='defaultStatus' onChange={handleChange}>
+        <input required type='text' name='person_name' placeholder='Full Name' onChange={handleChange} />
+        <input required type='number' name='person_age' placeholder='Age' onChange={handleChange}/>
+        <input required type='number' name='loan_amnt' placeholder='Loan Amount' onChange={handleChange}/>
+        <input required type='number' name='other_payments' placeholder='Other Current Payments' onChange={handleChange}/>
+        <input required type='number' name='person_emp_length' placeholder='Length of Employment' onChange={handleChange}/>
+        <input required type='number' name='person_income' placeholder='Income' onChange={handleChange}/>
+        <input required type='number' name='cb_person_cred_hist_length' placeholder='Credit History Length' onChange={handleChange}/>
+        <select required name='defaultStatus' onChange={handleChange}>
           <option>Have you ever defaulted? </option>
-          <option value='yes'>Yes</option>
-          <option value='no'>No</option>
+          <option value='True'>Yes</option>
+          <option value='False'>No</option>
         </select>
         <input type='submit' value='Confirm'/>
       </form>
-    </div>;
+    </div>
 }
 
 export default CalculateScore;
