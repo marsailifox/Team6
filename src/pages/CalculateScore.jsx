@@ -1,13 +1,15 @@
 import React from 'react';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 // import UserLoan from '../../models/user_loan'
 import { useAuth0 } from "@auth0/auth0-react"
+import {useNavigate} from 'react-router-dom'
 
 
 function CalculateScore() {
   const { user } = useAuth0()
-
+  const navigate=useNavigate()
   const [formData, setFormData]=useState({})
+  const [loan, setLoan]=useState({})
   // add state for loan status to conditionally render results page
   const [error, setError]=useState('')
   
@@ -84,8 +86,8 @@ function CalculateScore() {
     } else {
       cb_person_default_on_file = false
     }
-    setFormData(
-      {...formData, 
+    setLoan(current=>{
+      return{...formData, 
         person_income: person_income,
         person_age: person_age,
         loan_amnt: loan_amnt,
@@ -95,8 +97,8 @@ function CalculateScore() {
         loan_status: loan_status,
         percent_of_income: percentage,
         cb_person_default_on_file: cb_person_default_on_file
-      })
-
+      }})
+      
 
   }
   const handleChange=(e)=>{
@@ -111,6 +113,15 @@ function CalculateScore() {
     console.log(formData)
     // saveFormData(formData)
   }
+  useEffect(()=>{
+    if (loan?.loan_status){
+      navigate('/results',
+              {state: {
+                loan: loan
+              },
+              replace: false})
+      }
+  }, [loan])
 
   // const saveFormData(formData) {
   // }
