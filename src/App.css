@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 body {
-background-color: #f3ece3;
-background-image: src='./public/Logo';
+  background-color: #f3ece3;
+  background-image: url('../public/logo.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* #root {
