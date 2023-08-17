@@ -12,6 +12,7 @@ function CalculateScore() {
   const [loan, setLoan]=useState({})
   // add state for loan status to conditionally render results page
   const [error, setError]=useState('')
+  const [calculated, setCalculated]=useState(false)
   
   const calculate=(formData)=>{
     
@@ -98,7 +99,7 @@ function CalculateScore() {
         percent_of_income: percentage,
         cb_person_default_on_file: cb_person_default_on_file
       }})
-      
+      setCalculated(true)
 
   }
   const handleChange=(e)=>{
@@ -114,7 +115,7 @@ function CalculateScore() {
     // saveFormData(formData)
   }
   useEffect(()=>{
-    if (loan?.loan_status){
+    if (calculated){
       navigate('/results',
               {state: {
                 loan: loan
