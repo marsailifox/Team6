@@ -17,4 +17,4 @@ const Success = () => {
   )
 }
 
-export default Failure
+export default Success
