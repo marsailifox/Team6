@@ -16,8 +16,6 @@ function App() {
   return (
     <>
     {/* navbar goes here */}
-    <div class="border border-sky-500">testestestst</div>
-
     {/* <button onClick={() => loginWithRedirect()}>Login / Sign up</button>
     <button onClick={() => logout({ logoutParams: { returnTo: "http://localhost:5173" } })}>
       Log Out
