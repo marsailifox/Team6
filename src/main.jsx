@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       domain={import.meta.env.VITE_domain}
       clientId={import.meta.env.VITE_clientId}
       authorizationParams={{
-        redirect_uri: 'http://localhost:5173'
+        redirect_uri: 'http://localhost:5173/calculate'
       }}
     >
       <App />
