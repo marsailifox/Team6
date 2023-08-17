@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Success = () => {
+const Success = ({loan}) => {
   return (
     <div>Success</div>
   )
