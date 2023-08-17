@@ -15,13 +15,13 @@ function App() {
   return (
     <>
     {/* navbar goes here */}
-    <button onClick={() => loginWithRedirect()}>Login / Sign up</button>
+    {/* <button onClick={() => loginWithRedirect()}>Login / Sign up</button>
     <button onClick={() => logout({ logoutParams: { returnTo: "http://localhost:5173" } })}>
       Log Out
     </button>
       <h1>Credit Rabbit</h1>
       {user && <h2>Welcome {user.name}</h2>}
-      <CalculateScore/>
+      <CalculateScore/> */}
     </>
   )
 }
