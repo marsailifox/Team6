@@ -127,28 +127,32 @@ function CalculateScore() {
   // const saveFormData(formData) {
   // }
   
-  return <div class="flex justify-end">
-    <div class=" rounded-lg bg-white w-3/5 h-screen">
+  return <div class="relative">
+    <div class="flex justify-end">
+    <img class="absolute top-0 left-0 mt-10 z-10 " style={{ height: '10rem', marginTop: '0.5rem', position: 'absolute', top:'0', left:'1rem' }} src="./Logo.jpg" alt="" />
+    <img class="absolute top-0 left-0 mt-10 z-10 " style={{ height: '28rem', marginTop: '13rem',position: 'absolute', top:'0', left:'5rem'}} src="./form.jpg" alt="" />
+    <div class=" bg-white w-3/5 h-screen" style={{ borderRadius: '2rem'}}>
       <div id="form-container" class="pt-20 pl-16">
-      <h1 class="text-custom_orange text-3xl">Calculate Your Approval Score</h1>
+      <h1 class="text-custom_orange text-4xl">Calculate Your Approval Score</h1>
       <form class="mt-10" onSubmit={handleSubmit}>
       <div class="max-w-2xl mx-auto">
         <input class="w-full h-12 text-xl border-b border-black mb-2 focus:outline-none focus:border-blue-500" required type='text' name='person_name' placeholder='Full Name' onChange={handleChange} />
         <input class="w-full h-12 text-xl border-b border-black mb-2 focus:outline-none focus:border-blue-500" required type='number' name='person_age' placeholder='Age' onChange={handleChange}/>
-        <input class="w-full h-12 text-xl border-b border-black mb-2 focus:outline-none focus:border-blue-500" required type='number' name='loan_amnt' placeholder='Loan Amount' onChange={handleChange}/>
-        <input class="w-full h-12 text-xl border-b border-black mb-2 focus:outline-none focus:border-blue-500" required type='number' name='other_payments' placeholder='Other Current Payments' onChange={handleChange}/>
-        <input class="w-full h-12 text-xl border-b border-black mb-2 focus:outline-none focus:border-blue-500" required type='number' name='person_emp_length' placeholder='Length of Employment' onChange={handleChange}/>
         <input class="w-full h-12 text-xl border-b border-black mb-2 focus:outline-none focus:border-blue-500" required type='number' name='person_income' placeholder='Income' onChange={handleChange}/>
+        <input class="w-full h-12 text-xl border-b border-black mb-2 focus:outline-none focus:border-blue-500" required type='number' name='person_emp_length' placeholder='Length of Employment' onChange={handleChange}/>
+        <input class="w-full h-12 text-xl border-b border-black mb-2 focus:outline-none focus:border-blue-500" required type='number' name='loan_amnt' placeholder='Loan Amount' onChange={handleChange}/>
         <input class="w-full h-12 text-xl border-b border-black mb-2 focus:outline-none focus:border-blue-500" required type='number' name='cb_person_cred_hist_length' placeholder='Credit History Length' onChange={handleChange}/>
+        <input class="w-full h-12 text-xl border-b border-black mb-2 focus:outline-none focus:border-blue-500" required type='number' name='other_payments' placeholder='Other Current Payments' onChange={handleChange}/>
         <select class="w-full h-12 text-xl text-gray-400 focus:outline-none focus:border-blue-500" required name='defaultStatus' onChange={handleChange}>
           <option>Have you ever defaulted? </option>
           <option value='True'>Yes</option>
           <option value='False'>No</option>
         </select>
-        <input class="w-full h-12 mt-6 text-white bg-custom_orange text-xl rounded-lg" type='submit' value='Confirm'/>
+        <input class=" w-full h-12 mt-6 text-white bg-custom_orange text-xl rounded-lg" type='submit' value='Confirm'/>
         </div>
       </form>
       </div>
+    </div>
     </div>
     </div>
 }
