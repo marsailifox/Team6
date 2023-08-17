@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Failure = () => {
   return (
@@ -8,7 +9,7 @@ const Failure = () => {
             <h3>This Borrower's history can't be qualified for the credit or loan.</h3>
             <p>Please try again with different inputs</p>
         </heading>
-        <a>Go back to the </a>
+        <Link to="#">Go back to the Borrower's look up page.</Link>
     </div>
   )
 }
